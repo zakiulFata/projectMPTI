@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="style_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="kiri"> <button onclick="home()"><i class="fa-solid fa-house"></i></button></div>
+        <h2>Data Gaji Karyawan</h2>
+        <div class="kanan"> <button onclick="logout()"><i class="fa-solid fa-share-from-square"></i></button></div>
+    </div>
+
+    <!-- Konten Utama -->
+    <div class="container">
+        <!-- Tabel data karyawan -->
+        <table id="employeeTable">
+            <thead>
+                <tr>
+                    <th>Nama Karyawan</th>
+                    <th>Golongan</th>
+                    <th>Gaji Pokok</th>
+                    <th>Uang Lembur</th>
+                    <th>Total Gaji</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data karyawan akan ditambahkan secara dinamis -->
+            </tbody>
+        </table>
+
+        <!-- Form untuk menambahkan karyawan -->
+        <div class="form-container">
+            <h3>Input Gaji Karyawan</h3>
+            <input type="text" id="nama" placeholder="Nama Karyawan" required>
+            <select id="golongan">
+                <option value="A">Golongan A</option>
+                <option value="B">Golongan B</option>
+                <option value="C">Golongan C</option>
+            </select>
+            <input type="number" id="lembur" placeholder="Jumlah Lembur (5-10)" required min="5" max="10">
+            <button onclick="addEmployee()">Tambah Karyawan</button>
+        </div>
+    </div>
+
+    <script>
+        // Logout function
+        function logout() {
+            window.location.href = "login_page.html";
+            alert("Yakin anda ingin logout ?");
+        }
+        function home() {
+            window.location.href = "Dashboard_awal.html"
+        }
+
+        // Menyimpan data gaji pokok berdasarkan golongan
+        const gajiPokok = {
+            A: 4000000,
+            B: 3000000,
+            C: 2000000
+        };
+        const upahLembur = 120000;
+
+        // Memuat data karyawan dari local storage saat halaman dimuat
+        window.onload = function() {
+            const employees = JSON.parse(localStorage.getItem("employees")) || [];
+            employees.forEach(employee => {
+                addToTable(employee);
+            });
+        };
+
+        // Menambahkan karyawan baru ke tabel
+        function addEmployee() {
+            const nama = document.getElementById("nama").value;
+            const golongan = document.getElementById("golongan").value;
+            const lembur = parseInt(document.getElementById("lembur").value);
+            
+            if (lembur < 5 || lembur > 10) {
+                alert("Jumlah lembur harus antara 5 dan 10.");
+                return;
+            }
+
+            const gaji = gajiPokok[golongan];
+            const uangLembur = lembur * upahLembur;
+            const totalGaji = gaji + uangLembur;
+
+            const employee = {
+                nama: nama,
+                golongan: golongan,
+                gajiPokok: gaji,
+                uangLembur: uangLembur,
+                totalGaji: totalGaji
+            };
+
+            // Simpan ke local storage
+            const employees = JSON.parse(localStorage.getItem("employees")) || [];
+            employees.push(employee);
+            localStorage.setItem("employees", JSON.stringify(employees));
+
+            // Tambahkan ke tabel
+            addToTable(employee);
+
+            // Reset form setelah menambahkan
+            document.getElementById("nama").value = "";
+            document.getElementById("lembur").value = "";
+        }
+
+        // Menambahkan data karyawan ke tabel
+        function addToTable(employee) {
+            const table = document.getElementById("employeeTable").getElementsByTagName("tbody")[0];
+            const row = table.insertRow();
+
+            row.innerHTML = `
+                <td>${employee.nama}</td>
+                <td>${employee.golongan}</td>
+                <td>Rp ${employee.gajiPokok.toLocaleString()}</td>
+                <td>Rp ${employee.uangLembur.toLocaleString()}</td>
+                <td>Rp ${employee.totalGaji.toLocaleString()}</td>
+                <td><button onclick="deleteEmployee(this)"><i class="fa-solid fa-trash"></i></button></td>
+            `;
+        }
+
+        // Menghapus karyawan dari tabel dan local storage
+        function deleteEmployee(button) {
+            const row = button.parentElement.parentElement;
+            const namaKaryawan = row.cells[0].innerText;
+
+            // Ambil data karyawan dari local storage
+            let employees = JSON.parse(localStorage.getItem("employees")) || [];
+            employees = employees.filter(employee => employee.nama !== namaKaryawan);
+            localStorage.setItem("employees", JSON.stringify(employees));
+
+            row.remove();
+            alert("Anda yakin ingin menghapus ini ?")
+        }
+        function alertLogin(){
+
+        }
+    </script>
+</body>
+</html>

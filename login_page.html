@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login Website Kelompok 7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login Sistem</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <script>
+        // Fungsi untuk login
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Cek apakah username dan password sesuai
+            if (username === "admin" && password === "admin123") {
+                // Jika admin, arahkan ke halaman dashboard admin
+                window.location.href = "Dashboard_awal.html";
+            } else if (username === "user" && password === "user123") {
+                // Jika user, arahkan ke halaman dashboard user
+                window.location.href = "dashboard2.html";
+            } else {
+                // Jika tidak sesuai, tampilkan pesan error
+                errorMessage.textContent = "Username atau password salah!";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+/* Reset Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Body and basic styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: #111;
+  border: none;
+  color: #fff;
+  padding: 20px;
+  width: 200px; /* Lebar sidebar */
+  height: 100vh; /* Tinggi penuh */
+  position: fixed; /* Agar tetap berada di tempat */
+  top: 0; /* Dari atas */
+  left: 0; /* Dari kiri */
+}
+
+/* Logo styling */
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 30px; /* Jarak antara logo dan navbar */
+}
+
+/* Highlight untuk logo */
+.highlight {
+  color: #00ffcc; /* Warna menyala (hijau cerah) */
+}
+
+/* Tautan navbar styling */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Perbaiki alignment */
+}
+
+.nav-links button{
+  color: white; /* Warna teks default */
+  text-decoration: none; /* Menghilangkan garis bawah */
+  padding: 15px 20px; /* Ruang di sekitar teks */
+  display: inline-block; /* Agar padding berfungsi dengan baik */
+  transition: color 0.3s; /* Transisi untuk efek halus */
+  font-size: 15px;
+  background-color: #111;
+  border: none;
+}
+
+.nav-links button:hover {
+  color: #00ffcc; /* Warna teks saat hover (abu-abu) */
+}
+
+.nav-links button:active {
+  color: #888; /* Warna teks saat diklik (lebih gelap dari hover) */
+}
+
+/* Main content styling */
+.hero {
+  flex: 1;
+  margin-left: 200px; /* Offset untuk sidebar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1a1a1a; /* Mendekati hitam untuk latar belakang utama */
+  text-shadow: #fff;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("background1.jpg"); /* Ganti dengan path gambar Anda */
+  background-size: cover; /* Mengatur gambar agar memenuhi seluruh area */
+  background-repeat: no-repeat; /* Mencegah gambar diulang */
+  background-position: center; /* Memusatkan gambar */
+}
+
+.hero h1 {
+  font-size: 45px;
+  color: #fff; /* Warna menyala untuk judul */
+  font-family:  'Poppins', serif;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeuanganKU</title>
+  <link rel="stylesheet" href="style_dashboard_awaal.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Keuangan<span class="highlight">KU</span></div>
+    <div class="nav-links">
+      <button onclick="karyawan()">Daftar Karyawan</button>
+      <button onclick="input()"> Input Gaji</button>
+      <button onclick="index()">Index</button>
+      <button onclick="ket()">Keterangan</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Welcome To The Dashboard <br>Keuangan<span class="highlight">KU</span></h1>
+  </section>
+  <script>
+    function input() {
+      window.location.href = "dashboard.html";
+    }
+    function karyawan() {
+      window.location.href = "dashboard2.html";
+    }
+    function logout() {
+      window.location.href = "login_page.html";
+      alert("Yakin anda ingin logout ?");
+    }
+  </script>
+</body>
+</html>
